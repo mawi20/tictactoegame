@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>TicTacToe</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -11,15 +11,38 @@
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
-    <body class="container-fluid">
-      <h1>Example</h1>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
+    <body>
+      <h1>TicTacToe</h1>
+          <div class="container"><div>
+    <button name="NewGame" class="newGame" value="Start a New Game" onClick="fnNewGame()">Start a New Game</button>
+          </div>
+            <!-- <div class="minContainer"> -->
+        <table class="row" id="game"></table>
+          </div>
+    <table style="margin: auto; border: hidden; background-color: #FFFF00">
+      <tr>
+          <td id="r0c0" class="square"></td>
+          <td id="r0c1" class="square"></td>
+          <td id="r0c2" class="square"></td>
+      </tr>
+      <tr>
+        <td id="r1c0" class="square"></td>
+        <td id="r1c1" class="square"></td>
+        <td id="r1c2" class="square"></td>
+      </tr>
+      <tr>
+        <td id="r2c0" class="square"></td>
+        <td id="r2c1" class="square"></td>
+        <td id="r2c2" class="square"></td>
+      </tr>
+  </table>
+      <div class="col-md-12 text-center box"><div id ="madeby">Made by<a>Mawi</a></div></div>
+      <div class="input-prepend input-append">
+      <span class="add-on win_text">O won</span><strong id="o_win" class="win_times add-on">0</strong><span class="add-on">time(s)</span>
+      </div>
+      <div class="input-prepend input-append">
+      <span class="add-on win_text">X won</span><strong id="x_win" class="win_times add-on">0</strong><span class="add-on">time(s)</span>
+      </div>
+      <div class="clr">&nbsp;</div>
     </body>
 </html>
