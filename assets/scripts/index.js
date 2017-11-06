@@ -2,10 +2,12 @@
 
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
+// const events = require('./auth/events')
 
 // function (() => {
 //   setAPIOrigin(location, config)
 // })
+
 function isWinner (state) {
   let winner = null
   if (state.r0c0 === state.r0c1 && state.r0c0 === state.r0c2 && state.r0c0 != null) {
