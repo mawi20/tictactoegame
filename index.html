@@ -13,13 +13,14 @@
     </head>
     <body>
       <h1>TicTacToe</h1>
-          <div class="container"><div>
-    <button name="NewGame" class="newGame" value="Start a New Game" onClick="fnNewGame()">Start a New Game</button>
+          <!-- <div class="container"><div> -->
+    <!-- <button name="NewGame" class="newGame" value="Start a New Game" onClick="fnNewGame()">Start a New Game</button> -->
+          <div id = "button_wrapper">
+            <button type="submit" id="submitter">New Game</button>
           </div>
             <!-- <div class="minContainer"> -->
-        <table class="row" id="game"></table>
-          </div>
-    <table style="margin: auto; border: hidden; background-color: #FFFF00">
+        <table class="square" id="game"></table>
+    <table style="margin: auto; border: hidden; background-color: #85C1E9">
       <tr>
           <td id="r0c0" class="square"></td>
           <td id="r0c1" class="square"></td>
@@ -36,13 +37,13 @@
         <td id="r2c2" class="square"></td>
       </tr>
   </table>
-      <div class="col-md-12 text-center box"><div id ="madeby">Made by<a>Mawi</a></div></div>
+      <div class="col-md-4 text-center box"></div>
       <div class="input-prepend input-append">
       <span class="add-on win_text">O won</span><strong id="o_win" class="win_times add-on">0</strong><span class="add-on">time(s)</span>
       </div>
       <div class="input-prepend input-append">
       <span class="add-on win_text">X won</span><strong id="x_win" class="win_times add-on">0</strong><span class="add-on">time(s)</span>
       </div>
-      <div class="clr">&nbsp;</div>
+      <div class="clr"></div>
     </body>
 </html>
