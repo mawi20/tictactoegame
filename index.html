@@ -2,6 +2,7 @@
 <html>
     <head>
       <title>TicTacToe</title>
+
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -11,14 +12,48 @@
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
-    <body>
+    <body class="container-fluid">
       <h1>TicTacToe</h1>
-          <!-- <div class="container"><div> -->
-    <!-- <button name="NewGame" class="newGame" value="Start a New Game" onClick="fnNewGame()">Start a New Game</button> -->
+      <div class="text-center"></div>
+      <p id="message"></p>
+      <form id="sign-up">
+        <fieldset>
+          <legend>sign-up!</legend>
+          <input type="text" id="sign-up-email" name="credentials[email]" value="Email">
+          <input type="text" id="sign-up-password" name="credentials[password]" value="password">
+          <input type="text" id="sign-up-password-confirmation" name="credentials[password_confirmation]" value="password_confirmation">
+          <input type="submit" name="submit" value="Sign up!">
+        </fieldset>
+      </form>
+      <form id="sign-in">
+        <fieldset>
+            <legend>sign-in!</legend>
+            <input type="text" id="sign-in-email" name="credentials[email]" value="Email">
+            <input type="text" id="sign-in-password" name="credentials[password]" value="password"><input type="submit" name="submit" value="Sign in!">
+            </fieldset>
+        </form>
+      <form id="change-password">
+          <fieldset>
+            <legend>change password!</legend>
+            <input type="text" id="passwords[old]" placeholder="old pass">
+            <input type="text" id="passwords[new]" placeholder="new pass">
+            <input type="submit" name="submit" value="change-password!">
+          </fieldset>
+              </form>
+      <form id="sign-out">
+          <fieldset>
+            <legend>sign-out!</legend>
+            <!-- <input type="text" id="sign-out" placeholder="sign-out"> -->
+            <input type="submit" name="submit" value="sign out!">
+          </fieldset>
+              </form>
+        <!-- <p>Accessing an authenticated API.</p> -->
+          <div class="container"></div>
+    <button name="NewGame" class="newGame" value="Start a New Game" onClick="fnNewGame()">Start a New Game</button>
           <div id = "button_wrapper">
-            <button type="submit" id="submitter">New Game</button>
+            <!-- <button type="submit" id="submitter">New Game</button> -->
           </div>
-            <!-- <div class="minContainer"> -->
+            <div class="minContainer">
         <table class="square" id="game"></table>
     <table style="margin: auto; border: hidden; background-color: #85C1E9">
       <tr>
@@ -37,13 +72,16 @@
         <td id="r2c2" class="square"></td>
       </tr>
   </table>
-      <div class="col-md-4 text-center box"></div>
+      <div class="col-md-12 text-center box"></div>
       <div class="input-prepend input-append">
       <span class="add-on win_text">O won</span><strong id="o_win" class="win_times add-on">0</strong><span class="add-on">time(s)</span>
       </div>
-      <div class="input-prepend input-append">
-      <span class="add-on win_text">X won</span><strong id="x_win" class="win_times add-on">0</strong><span class="add-on">time(s)</span>
+      <!-- <div class="input-prepend input-append"> -->
+      <span class="add-on win_text">X won</span>
+      <strong id="x_win" class="win_times add-on">0</strong>
+      <span class="add-on">time(s)</span>
       </div>
-      <div class="clr"></div>
+      <!-- <div class="clr"></div> -->
+      <!-- </div> -->
     </body>
 </html>

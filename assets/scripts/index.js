@@ -1,13 +1,18 @@
 'use strict'
 
 const setAPIOrigin = require('../../lib/set-api-origin')
-const config = require('./config')
+// const config = require('./auth/config')
 // const events = require('./auth/events')
-
 // function (() => {
 //   setAPIOrigin(location, config)
 // })
-
+// $(() => {
+//   events.addHandlers()
+// $('.square').on('click')
+// })
+// console.log(this.id)
+// alert(text)
+// $('.square').on('click',)
 function isWinner (state) {
   let winner = null
   if (state.r0c0 === state.r0c1 && state.r0c0 === state.r0c2 && state.r0c0 != null) {
@@ -32,14 +37,14 @@ function isWinner (state) {
   return winner
 }
 $(document).ready()
-$('#newGame').on('click', function () {
+$('#newGame').click(function () {
   $('.square').text('')
 })
 let turn = 'X'
 const state = {r0c0: null, r0c1: null, r0c2: null, r1c0: null, r1c1: null, r1c2: null, r2c0: null, r2c1: null, r2c2: null}
 $('.square').click(function () {
   let winner = null
-  // const text = this.id
+  // const state = this.id
   if (state[this.id] === null) {
     $(this).text(turn) // this puts x or o in the box
     state[this.id] = turn // this puts x or o in the state variable
