@@ -1,18 +1,12 @@
 'use strict'
 
-const setAPIOrigin = require('../../lib/set-api-origin')
+// const setAPIOrigin = require('../../scr/set-api-origin')
 // const config = require('./auth/config')
-// const events = require('./auth/events')
-// function (() => {
+// const events = require('./auth/events'
+
+// (() => {
 // setAPIOrigin(location, config)
 // })
-// $(() => {
-// events.addHandlers()
-// $('.square').on('click')
-// })
-// console.log(this.id)
-// alert(text)
-// $('.square').on('click',)
 function isWinner (state) {
   let winner = null
   if (state.r0c0 === state.r0c1 && state.r0c0 === state.r0c2 && state.r0c0 != null) {
