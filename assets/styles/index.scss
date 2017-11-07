@@ -7,15 +7,16 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 }
 
 .container {
+  margin: auto;
   text-align: right;
 }
-.square {
-  border: 1px solid #000000;
-  font-size: 50px;
-  text-align: center;
-  font-style: sans-serif;
-  margin: auto;
-  height: 100px;
-  width: 100px;
 
+.square {
+  border: 10px solid #000000;
+  font-size: 50px;
+  font-style: sans-serif;
+  height: 150px;
+  text-align: center;
+  margin: center;
+  width: 150px;
 }

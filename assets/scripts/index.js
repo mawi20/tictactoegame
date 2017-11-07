@@ -4,10 +4,10 @@ const setAPIOrigin = require('../../lib/set-api-origin')
 // const config = require('./auth/config')
 // const events = require('./auth/events')
 // function (() => {
-//   setAPIOrigin(location, config)
+// setAPIOrigin(location, config)
 // })
 // $(() => {
-//   events.addHandlers()
+// events.addHandlers()
 // $('.square').on('click')
 // })
 // console.log(this.id)
@@ -63,8 +63,6 @@ $('.square').click(function () {
       turn = 'X'
     }
   }
-  // console.log(this.id)
-  // alert(text)
 })
 
 // $('.square').on('click',)
