@@ -36,7 +36,7 @@ const addHandlers = function () {
   $('#change-password').on('submit', onChangePassword)
 }
 
-const somefunction = function() {
+// const somefunction = function() {
 
 }
 

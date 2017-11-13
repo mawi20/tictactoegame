@@ -3,20 +3,25 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 .body {
   margin-right: auto;
+  padding: 100px;
   text-align: center;
 }
 
 .container {
-  margin: auto;
+  height: 50px;
+  margin: 0px;
+  padding: 10px;
   text-align: right;
 }
 
 .square {
   border: 10px solid #000000;
+  padding-top: 0px;
   font-size: 100px;
-  font-style: sans-serif;
+  // font-style: sans-serif;
   height: 150px;
   text-align: center;
-  margin: center;
+  margin: auto;
+  padding: 50px;
   width: 150px;
 }
