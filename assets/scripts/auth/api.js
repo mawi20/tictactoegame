@@ -17,18 +17,21 @@ const signIn = function (data) {
 }
 const changePassword = function (data) {
   return $.ajax({
-    url: config.apiOrigin + '/change-password/' + 'id??',
+    url: config.apiOrigin + '/change-password/' + 'id',
     method: 'PATCH',
     header: {
-      Authorization: 'Token token=' + 'token???'
+      Authorization: 'Token: token=' + 'id'
     },
     data
   })
 }
 const signOut = function (data) {
   return $.ajax({
-    url: config.apiOrigin + '/sign-out/' + 'id??',
-    method: 'POST',
+    url: config.apiOrigin + '/sign-out/' + 'id',
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + 'token'
+    },
     data
   })
 }

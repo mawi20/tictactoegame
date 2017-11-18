@@ -38,9 +38,10 @@ const addHandlers = function () {
 
 // const somefunction = function() {
 
-}
-
 module.exports = {
   addHandlers,
-  somefunctionq
+  onSignIn,
+  onSignUp,
+  onChangePassword
+  // onSignOut
 }

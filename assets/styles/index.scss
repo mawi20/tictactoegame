@@ -2,26 +2,32 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 .body {
-  margin-right: auto;
-  padding: 100px;
+  background-color: #000000;
+  font-size: 100px;
+  margin-top: auto;
+  max-width: none;
+  padding: auto;
   text-align: center;
+  // background-image: url
+
 }
 
 .container {
-  height: 50px;
+  height: 0px;
   margin: 0px;
-  padding: 10px;
-  text-align: right;
+  max-width: 10px;
+  padding: none;
+  text-align: center;
 }
 
 .square {
   border: 10px solid #000000;
-  padding-top: 0px;
+  padding-top: 10px;
   font-size: 100px;
   // font-style: sans-serif;
   height: 150px;
   text-align: center;
-  margin: auto;
-  padding: 50px;
+  margin: 0px;
+  // padding: 50px;
   width: 150px;
 }

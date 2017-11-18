@@ -7,6 +7,108 @@ import * as Cookies from 'js-cookie'
 // (() => {
 // setAPIOrigin(location, config)
 // })
+function updateGame (token, id, index, value, over) {
+  // console.log(token)
+  const url = 'http://tic-tac-toe.wdibos.com/games/' + id
+  const data = {'game': {'cell': {'index': index, 'value': value}, 'over': over}}
+  $.ajax({
+    type: 'PATCH',
+    url: url,
+    data: data,
+    headers: {'Authorization': 'Token ' + token}, // WTF? documentation unclear
+    dataType: 'JSON',
+    success: function (data) {
+      // console.log(data)
+    }
+  })
+}
+function getGame (token, id, state) {
+  const url = 'http://tic-tac-toe.wdibos.com/games/' + id
+  $.ajax({
+    type: 'GET',
+    url: url,
+    async: false,
+    headers: {'Authorization': 'Token ' + token}, // WTF? documentation unclear
+    dataType: 'JSON',
+    success: function (data) {
+      // console.log(data)
+      if (data['game']['cells'][0] === '') {
+        data['game']['cells'][0] = null
+      }
+      if (data['game']['cells'][1] === '') {
+        data['game']['cells'][1] = null
+      }
+      if (data['game']['cells'][2] === '') {
+        data['game']['cells'][2] = null
+      }
+      if (data['game']['cells'][3] === '') {
+        data['game']['cells'][3] = null
+      }
+      if (data['game']['cells'][4] === '') {
+        data['game']['cells'][4] = null
+      }
+      if (data['game']['cells'][5] === '') {
+        data['game']['cells'][5] = null
+      }
+      if (data['game']['cells'][6] === '') {
+        data['game']['cells'][6] = null
+      }
+      if (data['game']['cells'][7] === '') {
+        data['game']['cells'][7] = null
+      }
+      if (data['game']['cells'][8] === '') {
+        data['game']['cells'][8] = null
+      }
+      state = {r0c0: data['game']['cells'][0], r0c1: data['game']['cells'][1], r0c2: data['game']['cells'][2], r1c0: data['game']['cells'][3], r1c1: data['game']['cells'][4], r1c2: data['game']['cells'][5], r2c0: data['game']['cells'][6], r2c1: data['game']['cells'][7], r2c2: data['game']['cells'][8]}
+      console.log(state)
+    }
+  })
+  console.log(state)
+  return state
+}
+
+function createGame (token) {
+  const url = 'http://tic-tac-toe.wdibos.com/games'
+  $.ajax({
+    type: 'POST',
+    url: url,
+    headers: {'Authorization': 'Token ' + token}, // WTF? documentation unclear
+    dataType: 'JSON',
+    success: function (data) {
+      Cookies.set('game_id', data['game']['id'])
+      // console.log(data)
+    }
+  })
+}
+
+function fetchGames (token) {
+  const url = 'http://tic-tac-toe.wdibos.com/games'
+  $.ajax({
+    type: 'GET',
+    url: url,
+    headers: {'Authorization': 'Token ' + token}, // WTF? documentation unclear
+    dataType: 'JSON',
+    success: function (data) {
+      // console.log(data)
+      let htmlString = ''
+      data['games'].map(function (item) {
+        if (item === null) {
+        } else {
+          htmlString = htmlString + `<a href="#" class='gamelink' id=${item['id']}>game ${item['id']}</a><br>`
+        }
+      })
+      $('#current_games').html(htmlString)
+    }
+  })
+}
+
+function drawState (state) {
+  console.log(state)
+  $.each(state, function (key, value) {
+    $(`#${key}`).text(value)
+  })
+}
+
 function isWinner (state) {
   let winner = null
   if (state.r0c0 === state.r0c1 && state.r0c0 === state.r0c2 && state.r0c0 != null) {
@@ -50,7 +152,7 @@ $('#sign-up').submit(function (e) {
     success: function (data) {
       Cookies.set('userdata', {'id': data.user.id, 'email': data.user.email})
       $('#game').show()
-      console.log(data)
+      // console.log(data)
     }
   })
   e.preventDefault()
@@ -66,9 +168,17 @@ $('#sign-in').submit(function (e) {
     data: data,
     dataType: 'JSON',
     success: function (data) {
+      // store.user = data.user
       Cookies.set('userdata', {'id': data.user.id, 'email': data.user.email, 'token': data.user.token})
       $('#game').show()
       console.log(data)
+      if (Cookies.getJSON('game_id') === undefined) {
+        createGame(data.user.token)
+      } else {
+        state = getGame(Cookies.getJSON('userdata').token, Cookies.getJSON('game_id'), state)
+        drawState(state)
+      }
+      fetchGames(data.user.token)
     }
   })
   e.preventDefault()
@@ -78,46 +188,50 @@ $('#sign-out').submit(function (e) {
   const userId = Cookies.getJSON('userdata').id
   const userToken = Cookies.getJSON('userdata').token
   const data = {'id': userId}
-  const url = 'http://tic-tac-toe.wdibos.com/sign-out' + userId
+  const url = 'http://tic-tac-toe.wdibos.com/sign-out/' + userId
   $.ajax({
     type: 'DELETE',
     url: url,
-    headers: {'Authorization': 'token=' + userToken}, // WTF? documentation unclear
+    headers: {'Authorization': 'Token ' + userToken}, // WTF? documentation unclear
     data: data,
     dataType: 'JSON',
     success: function (data) {
       Cookies.remove('userdata')
       $('#game').hide()
-      console.log(data)
+      // console.log(data)
     }
   })
   e.preventDefault()
 })
 $('#change-password').submit(function (e) {
-  const oldPassword = $('#old-password').val()
-  const newPassword = $('#new-password').val()
+  const oldPassword = $('[name=old-password]').val()
+  // console.log(oldPassword)
+  const newPassword = $('[name=new-password]').val()
+  // console.log(newPassword)
   const userToken = Cookies.getJSON('userdata').token
-  const data = {'old': oldPassword, 'new': newPassword}
+  const data = {'passwords': {'old': oldPassword, 'new': newPassword}}
   const userId = Cookies.getJSON('userdata').id
   const url = 'http://tic-tac-toe.wdibos.com/change-password/' + userId
   $.ajax({
     type: 'PATCH',
     url: url,
-    headers: {'Authorization': 'token=' + userToken}, // WTF? documentation unclear
+    headers: {'Authorization': 'Token ' + userToken}, // WTF? documentation unclear
     data: data,
     dataType: 'JSON',
     success: function (data) {
-      console.log(data)
-      console.log(userToken)
+      // console.log(data)
+      // console.log(userToken)
     },
     error: function (data) {
-      console.log(data)
-      console.log(userToken)
+      // console.log(data)
+      // console.log(userToken)
     }
   })
   e.preventDefault()
 })
 $('#newGame').click(function () {
+  createGame(Cookies.getJSON('userdata').token)
+  fetchGames(Cookies.getJSON('userdata').token)
   // console.log('Yo')
   $('.square').each(function () {
     // console.log('sq')
@@ -147,6 +261,31 @@ $('.square').click(function () {
           $('#result').text(`winner is ${winner}`)
         }
       }
+      let index = 0
+      if (this.id === 'r0c0') {
+        index = 0
+      } else if (this.id === 'r0c1') {
+        index = 1
+      } else if (this.id === 'r0c2') {
+        index = 2
+      } else if (this.id === 'r1c0') {
+        index = 3
+      } else if (this.id === 'r1c1') {
+        index = 4
+      } else if (this.id === 'r1c2') {
+        index = 5
+      } else if (this.id === 'r2c0') {
+        index = 6
+      } else if (this.id === 'r2c1') {
+        index = 7
+      } else if (this.id === 'r2c2') {
+        index = 8
+      }
+      let over = true
+      if (winner === null) {
+        over = false
+      }
+      updateGame(Cookies.getJSON('userdata').token, Cookies.getJSON('game_id'), index, turn, over)
       if (turn === 'X') {
         turn = 'O'
       } else {
@@ -154,6 +293,17 @@ $('.square').click(function () {
       }
     }
   }
+})
+
+$('#current_games').on('click', '.gamelink', function (e) {
+  const id = this.id
+  console.log(id)
+  const token = Cookies.getJSON('userdata').token
+  Cookies.set('game_id', id)
+  state = getGame(token, id, state)
+  console.log(state)
+  drawState(state)
+  e.preventDefault()
 })
 
 // $('.square').on('click',)
