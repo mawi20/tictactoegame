@@ -27,7 +27,7 @@ function getGame (token, id, state) {
   $.ajax({
     type: 'GET',
     url: url,
-    async: false,
+
     headers: {'Authorization': 'Token ' + token}, // WTF? documentation unclear
     dataType: 'JSON',
     success: function (data) {
@@ -175,7 +175,7 @@ $('#sign-in').submit(function (e) {
       if (Cookies.getJSON('game_id') === undefined) {
         createGame(data.user.token)
       } else {
-        state = getGame(Cookies.getJSON('userdata').token, Cookies.getJSON('game_id'), state)
+        getGame(Cookies.getJSON('userdata').token, Cookies.getJSON('game_id'), state)
         drawState(state)
       }
       fetchGames(data.user.token)
