@@ -30,6 +30,12 @@ const onChangePassword = function (event) {
     .catch(ui.changePasswordFailure)
 }
 
+const hideLoggedInForms = function () {
+  $('#change-password').hide()
+  $('#sign-out').hide()
+
+hideLoggedInForms()
+
 const addHandlers = function () {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-In').on('submit', onSignIn)
@@ -43,5 +49,4 @@ module.exports = {
   onSignIn,
   onSignUp,
   onChangePassword
-  // onSignOut
 }

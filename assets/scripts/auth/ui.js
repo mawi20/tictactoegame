@@ -3,6 +3,10 @@
 const signInSuccess = function (data) {
   console.log(data)
   $('#message').text('Signed in succesfully')
+  $('#sign-up').hide()
+  $('#sign-in').hide()
+  $('#change-password').show()
+  $('#sign-out').show()
 }
 
 const signInFailure = function (error) {
@@ -28,6 +32,8 @@ const changePasswordSuccess = function (data) {
 const signOut = function (data) {
   console.log(data)
   $('#message').text('signOut')
+  $('#sign-up').show()
+  $('#sign-in').show()
 }
 module.exports = {
   signInSuccess,
